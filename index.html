@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Добрите микроби – пробиотични почистващи продукти за дома, децата, домашните любимци и колата. Проект на ученическа виртуална фирма.">
+<meta property="og:title" content="Добрите микроби – пробиотична грижа за дома">
+<meta property="og:description" content="Почистване, което продължава да работи. Проект на ученическа виртуална фирма.">
+<meta property="og:type" content="website">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Добрите микроби</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+/* Layout: свежа „лабораторна“ витрина — тъмнозелен банер с живи микроби, после светли секции на решетка */
+:root{
+  --bg:#F3F6F1; --surface:#FFFFFF; --surface-2:#E6EEE7; --ink:#13261F; --muted:#56675F; --line:#D3DED5;
+  --green:#1F6F52; --on-green:#FFFFFF; --mint:#3DB37C; --sun:#E9A93A; --ok:#1F7A4D;
+  --hero-a:#0D2A20; --hero-b:#1B5640; --hero-ink:#EEF6F1; --hero-muted:#A9C8B8; --hero-line:rgba(238,246,241,.18);
+  --dirt:#8A6A45; --shadow:0 18px 40px -22px rgba(13,42,32,.45);
+  --f-display:"Unbounded","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E1714; --surface:#15211C; --surface-2:#1C2B25; --ink:#E7F0EA; --muted:#9FB2A8; --line:#27372F;
+  --green:#5FD39C; --on-green:#0B1A13; --mint:#6BE0A8; --sun:#F5C766; --ok:#6BE0A8; --dirt:#B08B60;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.8); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0E1714; --surface:#15211C; --surface-2:#1C2B25; --ink:#E7F0EA; --muted:#9FB2A8; --line:#27372F;
+  --green:#5FD39C; --on-green:#0B1A13; --mint:#6BE0A8; --sun:#F5C766; --ok:#6BE0A8; --dirt:#B08B60;
+  --shadow:0 18px 40px -22px rgba(0,0,0,.8); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,3.8vw,2.7rem)}
+h3{font-size:1.1rem}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--green)}
+.lead{color:var(--muted);max-width:60ch;margin-top:12px}
+section{padding-block:clamp(56px,9vw,100px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.sec-head > div{min-width:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:999px;padding:12px 22px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--green);color:var(--on-green)}
+.btn-sun{background:var(--sun);color:#1D1606}
+.btn-line{border-color:currentColor;background:transparent}
+.btn-sm{padding:8px 14px;font-size:.85rem}
+
+/* лента */
+.marquee{background:var(--sun);color:#1D1606;overflow:hidden;font-size:.8rem;font-weight:600;padding-block:8px}
+.marquee-track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.marquee-track span{padding-inline:22px;white-space:nowrap}
+.marquee-track span::after{content:"●";margin-left:44px;font-size:.6em;vertical-align:middle;opacity:.6}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* хедър */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.logo svg{width:38px;height:38px;flex:none}
+.logo b{font-family:var(--f-display);font-size:1.05rem;font-weight:700;display:block;line-height:1.1;white-space:nowrap}
+.logo small{display:block;font-size:.68rem;color:var(--muted);white-space:nowrap}
+nav.main{display:flex;gap:24px}
+nav.main a{text-decoration:none;font-weight:500;font-size:.93rem;position:relative}
+nav.main a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--mint);transition:right .25s}
+nav.main a:hover::after{right:0}
+.top-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;position:relative;flex:none}
+.icon-btn svg{width:20px;height:20px}
+.count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:var(--sun);color:#1D1606;font-size:.7rem;font-weight:700;display:grid;place-items:center;padding-inline:5px}
+.count.bump{animation:bump .4s}
+@keyframes bump{50%{transform:scale(1.35)}}
+#menuBtn{display:none}
+.mobile-nav{border-top:1px solid var(--line);padding-block:12px}
+.mobile-nav a{display:block;padding-block:12px;text-decoration:none;font-size:1.05rem;font-weight:500;border-bottom:1px solid var(--line)}
+@media (max-width:900px){ nav.main{display:none} #menuBtn{display:grid} }
+
+/* банер */
+.hero{position:relative;background:radial-gradient(120% 90% at 85% 20%,var(--hero-b),var(--hero-a) 70%);color:var(--hero-ink);overflow:hidden;padding-block:clamp(48px,8vw,90px)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+.hero-in{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+.hero .eyebrow{color:var(--sun)}
+.hero h1{font-size:clamp(2.2rem,5.8vw,4.3rem);margin-top:14px}
+.hero h1 em{display:block;font-style:normal;color:#7FE3B0;min-height:1.15em}
+.hero h1 em span{display:inline-block;animation:wordIn .7s cubic-bezier(.2,.7,.2,1)}
+@keyframes wordIn{from{opacity:0;transform:translateY(.4em) scale(.96)}}
+.hero p{color:var(--hero-muted);max-width:48ch;margin-top:20px;font-size:1.06rem}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero .btn-line{color:var(--hero-ink)}
+.stage{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(127,227,176,.22),rgba(127,227,176,.04) 65%,transparent 70%)}
+.stage::before{content:"";position:absolute;inset:6%;border-radius:50%;border:1px dashed var(--hero-line);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity 1s}
+.slide.on{opacity:1}
+.slide .art{width:62%;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35))}
+.slide.on .art{animation:floatIn 1.2s cubic-bezier(.2,.7,.2,1) both, bob 5s 1.2s ease-in-out infinite}
+@keyframes floatIn{from{transform:translateY(30px) rotate(-6deg);opacity:0}}
+@keyframes bob{50%{transform:translateY(-10px) rotate(1.5deg)}}
+.slide-cap{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);background:rgba(13,42,32,.75);backdrop-filter:blur(6px);border:1px solid var(--hero-line);border-radius:999px;padding:8px 18px;white-space:nowrap;font-weight:500;font-size:.92rem}
+.dots{position:absolute;top:4%;right:4%;display:flex;gap:6px;z-index:2}
+.dots button{width:22px;height:4px;border:0;border-radius:2px;background:var(--hero-line);padding:0}
+.dots button.on{background:var(--hero-ink)}
+@media (max-width:820px){ .hero-in{grid-template-columns:1fr} .stage{max-width:380px;width:100%;margin:0 auto} }
+
+/* продукти */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-size:.88rem;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px}
+.card-art{position:relative;aspect-ratio:1/1;max-width:100%;width:100%;border:0;padding:0;border-radius:14px;display:grid;place-items:center;overflow:hidden}
+.card-art .art{width:62%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-art .art{transform:translateY(-6px) rotate(-3deg) scale(1.04)}
+.card-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-art .qv{position:absolute;left:12px;right:12px;bottom:12px;background:var(--surface);color:var(--ink);border-radius:999px;padding:9px;font-weight:600;font-size:.85rem;transform:translateY(150%);transition:transform .3s;z-index:1}
+.card:hover .qv,.card-art:focus-visible .qv{transform:none}
+@media (hover:none){ .card-art .qv{transform:none} }
+.badge{position:absolute;top:12px;left:12px;background:var(--sun);color:#1D1606;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;z-index:1}
+.badge.new{background:var(--green);color:var(--on-green)}
+.card-body{display:flex;justify-content:space-between;align-items:end;gap:10px;padding:2px 4px 4px}
+.card-body > div{min-width:0}
+.card h3{font-size:1rem}
+.card .meta{font-size:.8rem;color:var(--muted);margin-top:2px}
+.price{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;margin-top:6px}
+.price s{color:var(--muted);font-weight:400;margin-left:6px;font-size:.88em}
+.add{width:42px;height:42px;flex:none;border-radius:50%;border:0;background:var(--green);color:var(--on-green);font-size:1.4rem;line-height:1}
+.add:hover{background:var(--mint)}
+
+/* наука */
+.science-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.steps{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:16px}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
+.steps b{grid-row:span 2;width:40px;height:40px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center;font-family:var(--f-display);font-size:.95rem}
+.steps h3{font-size:1rem;padding-top:2px}
+.steps p{color:var(--muted);font-size:.95rem}
+.lab{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;aspect-ratio:4/3;max-width:100%;box-shadow:var(--shadow)}
+.lab canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:manipulation}
+.lab-hud{position:absolute;left:14px;right:14px;top:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;pointer-events:none}
+.lab-hud > *{pointer-events:auto}
+.meter{background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.88rem;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:10px}
+.meter i{display:block;width:90px;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.meter i u{display:block;height:100%;background:var(--mint);transition:width .3s}
+.lab-btns{display:flex;gap:6px}
+.lab-btns .btn{background:color-mix(in srgb,var(--surface) 90%,transparent);border-color:var(--line)}
+.lab-hint{font-size:.85rem;color:var(--muted);margin-top:12px}
+@media (max-width:860px){ .science-in{grid-template-columns:1fr} }
+
+/* къде помага */
+.places{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.place{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.place .ico{width:52px;height:52px;border-radius:14px;background:var(--surface-2);display:grid;place-items:center;color:var(--green)}
+.place .ico svg{width:30px;height:30px}
+.place p{color:var(--muted);font-size:.92rem;flex:1}
+.place .links{display:flex;flex-wrap:wrap;gap:6px}
+.place .links button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:500}
+.place .links button:hover{border-color:var(--green);color:var(--green)}
+.place.birds{border-color:color-mix(in srgb,var(--sun) 60%,var(--line))}
+
+/* числа */
+.facts{background:var(--green);color:var(--on-green)}
+.facts-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.fact b{display:block;font-family:var(--f-display);font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.fact span{opacity:.85;font-size:.92rem}
+@media (max-width:760px){ .facts-in{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* мостри */
+.samples-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+form.box{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vw,32px);display:grid;gap:16px}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.pick label{position:relative;border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;justify-items:center;gap:6px;text-align:center;font-size:.82rem;font-weight:500;cursor:pointer;background:var(--bg)}
+.pick label .art{width:56px}
+.pick input{position:absolute;opacity:0;pointer-events:none}
+.pick input:checked + span{outline:2px solid var(--green)}
+.pick label:has(input:checked){border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.field{display:grid;gap:6px}
+.field label{font-size:.85rem;font-weight:500}
+.field input,.field textarea,.field select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.field textarea{min-height:110px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok);border-radius:10px;padding:12px 14px;font-weight:500}
+.form-err{color:#C0462E;font-size:.88rem}
+@media (max-width:860px){ .samples-in{grid-template-columns:1fr} }
+@media (max-width:480px){ .two{grid-template-columns:1fr} }
+
+/* брояч */
+.launch{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,5vw,48px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;position:relative;overflow:hidden}
+.launch::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--mint) 35%,transparent),transparent 70%);pointer-events:none}
+.launch h2{font-size:clamp(1.4rem,3vw,2rem);margin-top:8px}
+.launch p{color:var(--muted);margin-top:10px;max-width:50ch}
+.clock{display:flex;gap:10px;position:relative}
+.clock div{min-width:72px;text-align:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px 6px}
+.clock b{display:block;font-family:var(--f-display);font-size:1.9rem;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--green)}
+.clock span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:820px){ .launch{grid-template-columns:1fr} .clock div{min-width:0;flex:1} }
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px 18px}
+.faq summary{cursor:pointer;font-weight:600;padding-block:14px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-display);color:var(--green);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding-bottom:16px}
+
+/* за нас */
+.about-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,72px);align-items:start}
+.about-in .story{font-size:1.15rem;margin-top:16px}
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:12px;align-items:center}
+.avatar{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--surface-2);color:var(--green)}
+.avatar svg{width:26px;height:26px}
+.person b{display:block;font-size:.95rem}
+.person span{font-size:.82rem;color:var(--muted)}
+@media (max-width:820px){ .about-in{grid-template-columns:1fr} }
+@media (max-width:420px){ .team{grid-template-columns:1fr} }
+
+/* контакти */
+.contact-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,72px)}
+.cinfo{display:grid;gap:16px;margin-top:24px}
+.cinfo small{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cinfo div{font-weight:500;user-select:all;overflow-wrap:anywhere}
+.social{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+@media (max-width:820px){ .contact-in{grid-template-columns:1fr} }
+
+footer{border-top:1px solid var(--line);padding-block:30px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.disclaimer{background:var(--surface-2);color:var(--ink);font-size:.82rem;text-align:center;padding-block:10px}
+
+/* модал и количка */
+.overlay{position:fixed;inset:0;background:rgba(8,20,15,.55);z-index:60;backdrop-filter:blur(3px);animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.modal{position:fixed;z-index:61;left:50%;top:50%;transform:translate(-50%,-50%);width:min(840px,calc(100vw - 32px));max-height:calc(100dvh - 48px);overflow:auto;background:var(--surface);border-radius:24px;display:grid;grid-template-columns:1fr 1fr;animation:rise .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translate(-50%,-46%)}}
+.modal-art{display:grid;place-items:center;min-height:340px;position:relative;overflow:hidden}
+.modal-art .art{width:56%}
+.modal-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.modal-body{padding:28px;display:flex;flex-direction:column;gap:12px;position:relative}
+.modal-body h3{font-size:1.45rem;padding-right:44px}
+.modal-body .meta{font-size:.88rem;color:var(--muted)}
+.modal-body ul{margin:0;padding-left:20px;color:var(--muted);font-size:.92rem}
+.qty-row{display:flex;align-items:center;gap:12px}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg);line-height:1}
+.close{position:absolute;top:16px;right:16px}
+@media (max-width:680px){ .modal{grid-template-columns:1fr} .modal-art{min-height:220px} .modal-art .art{width:40%} }
+.drawer{position:fixed;z-index:61;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);display:flex;flex-direction:column;animation:drawerIn .35s cubic-bezier(.2,.7,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+@keyframes drawerIn{from{transform:translateX(100%)}}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:1.3rem}
+.drawer-body{flex:1;overflow:auto;padding:8px 22px}
+.line{display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:14px;align-items:center;padding-block:14px;border-bottom:1px solid var(--line)}
+.thumb{width:60px;height:60px;border-radius:12px;display:grid;place-items:center;position:relative;overflow:hidden}
+.thumb .art{width:62%}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.line b{display:block;font-size:.92rem}
+.line small{color:var(--muted)}
+.drawer-foot{padding:18px 22px;border-top:1px solid var(--line);display:grid;gap:10px}
+.promo{display:flex;gap:8px}
+.promo input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-transform:uppercase}
+.sumrow{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums;font-size:.95rem}
+.sumrow.total{font-size:1.2rem;font-weight:600;padding-top:8px;border-top:1px solid var(--line)}
+.sumrow.disc{color:var(--ok)}
+.note{font-size:.8rem;color:var(--muted)}
+.empty,.done{text-align:center;padding:48px 10px;color:var(--muted);display:grid;gap:12px;justify-items:center}
+.done{color:var(--ink)}
+.done .tick{width:70px;height:70px;border-radius:50%;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok);display:grid;place-items:center;font-size:2rem}
+.toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:999px;font-weight:500;font-size:.9rem;box-shadow:var(--shadow);animation:toast .3s;max-width:calc(100vw - 32px)}
+@keyframes toast{from{opacity:0;transform:translate(-50%,10px)}}
+
+/* бот */
+.bot-fab{position:fixed;z-index:50;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:7px 18px 7px 7px;box-shadow:var(--shadow);font-weight:600}
+.face{width:42px;height:42px;border-radius:50%;background:var(--mint);display:grid;place-items:center;flex:none}
+.face svg{width:30px;height:30px}
+.bot{position:fixed;z-index:55;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(380px,calc(100vw - 32px));height:min(600px,calc(100dvh - 120px));background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;animation:botIn .35s cubic-bezier(.2,.7,.2,1);transform-origin:bottom right}
+@keyframes botIn{from{opacity:0;transform:scale(.9)}}
+.bot-head{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--ink);color:var(--bg)}
+.bot-head b{display:block}
+.bot-head small{opacity:.75;font-size:.78rem}
+.bot-head button{margin-left:auto;background:transparent;border:0;color:inherit;font-size:1.5rem;width:36px;height:36px}
+.msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:10px 14px;border-radius:16px;font-size:.92rem;line-height:1.5;animation:msgIn .3s}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}}
+.msg.b{background:var(--surface-2);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.me{background:var(--green);color:var(--on-green);border-bottom-right-radius:4px;align-self:flex-end}
+.typing{display:flex;gap:4px;padding:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25;transform:translateY(-3px)}}
+.quick{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start}
+.quick button{border:1px solid var(--green);color:var(--green);background:transparent;border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:500}
+.quick button:hover{background:var(--green);color:var(--on-green)}
+.recs{display:grid;gap:8px;align-self:stretch}
+.rec{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--bg)}
+.rec .thumb{width:52px;height:52px}
+.rec b{font-size:.86rem;display:block}
+.rec small{color:var(--muted);font-variant-numeric:tabular-nums}
+.bot-in{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.bot-in input{flex:1;min-width:0;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:10px 16px}
+.bot-in button{width:42px;height:42px;border-radius:50%;border:0;background:var(--green);color:var(--on-green);display:grid;place-items:center}
+
+@supports (animation-timeline: view()){
+  .reveal{animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+  @keyframes revealUp{from{opacity:.2;transform:translateY(28px)}}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+
+<div class="marquee" aria-label="Новини"><div class="marquee-track" id="marquee"></div></div>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#home" aria-label="Начало">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="var(--green)"/><path d="M12 22c0-6 4-10 9-10s8 4 7 9-5 8-10 7-6-3-6-6z" fill="var(--mint)"/><circle cx="17" cy="19" r="1.8" fill="var(--hero-a)"/><circle cx="23" cy="19" r="1.8" fill="var(--hero-a)"/><path d="M17 24q3 2.4 6 0" stroke="var(--hero-a)" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <span><b id="logoName"></b><small id="logoSub"></small></span>
+    </a>
+    <nav class="main" aria-label="Основно меню">
+      <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#contact">Контакти</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="Количка">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L20.5 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+        <span class="count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn" id="menuBtn" aria-label="Меню" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav wrap" id="mobileNav" hidden>
+    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#contact">Контакти</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero" id="home">
+    <canvas id="heroBugs" aria-hidden="true"></canvas>
+    <div class="wrap hero-in">
+      <div>
+        <div class="eyebrow" id="heroEyebrow"></div>
+        <h1><span id="heroLead"></span> <em id="heroWord"><span></span></em></h1>
+        <p id="heroText"></p>
+        <div class="hero-ctas">
+          <a class="btn btn-sun" href="#products" id="heroBtn1"></a>
+          <button class="btn btn-line" id="heroBtn2" type="button"></button>
+        </div>
+      </div>
+      <div class="stage" id="stage"><div class="dots" id="dots"></div></div>
+    </div>
+  </div>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow">Продукти</div><h2>Една система за целия дом</h2><p class="lead">Концентрирани формули без хлор и фосфати. Изберете продукт или вземете комплекта.</p></div>
+        <div class="filters" id="filters" role="group" aria-label="Филтър по категория"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="science" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="wrap science-in">
+      <div class="reveal">
+        <div class="eyebrow">Как действа</div>
+        <h2 id="sciTitle"></h2>
+        <p class="lead" id="sciText"></p>
+        <ol class="steps" id="sciSteps"></ol>
+      </div>
+      <div class="reveal">
+        <div class="lab" id="lab">
+          <canvas id="labCanvas" aria-label="Интерактивна симулация: микроби почистват мръсотия"></canvas>
+          <div class="lab-hud">
+            <div class="meter" aria-live="polite">Чистота <i><u id="cleanBar" style="width:0%"></u></i> <span id="cleanPct">0%</span></div>
+            <div class="lab-btns"><button class="btn btn-sm" id="spill" type="button">Разлей сок</button><button class="btn btn-sm" id="resetLab" type="button">Отначало</button></div>
+          </div>
+        </div>
+        <p class="lab-hint" id="sciHint"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="places">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Къде помага</div><h2>За всеки ъгъл, в който живеете</h2></div></div>
+      <div class="places" id="placesGrid"></div>
+    </div>
+  </section>
+
+  <div class="facts"><div class="wrap facts-in" id="facts" style="padding-block:clamp(40px,6vw,64px)"></div></div>
+
+  <section id="samples">
+    <div class="wrap samples-in">
+      <div class="reveal">
+        <div class="eyebrow">Мостра</div>
+        <h2 id="smpTitle"></h2>
+        <p class="lead" id="smpText"></p>
+      </div>
+      <form class="box reveal" id="smpForm" novalidate>
+        <div class="field"><label>Изберете продукт</label><div class="pick" id="smpPick" role="radiogroup" aria-label="Продукт за мостра"></div></div>
+        <div class="two">
+          <div class="field"><label for="sName">Име</label><input id="sName" autocomplete="name"></div>
+          <div class="field"><label for="sCity">Град</label><input id="sCity" autocomplete="address-level2"></div>
+        </div>
+        <div class="field"><label for="sMail">Имейл</label><input id="sMail" type="email" autocomplete="email"></div>
+        <div id="smpMsg" hidden></div>
+        <button class="btn btn-main" type="submit">Заяви мостра</button>
+      </form>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="launch reveal">
+        <div><div class="eyebrow" id="launchLabel"></div><h2 id="launchTitle"></h2><p id="launchText"></p></div>
+        <div class="clock" id="clock"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Въпроси</div><h2>Често питат</h2></div></div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+  <section id="about" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="wrap about-in">
+      <div class="reveal"><div class="eyebrow">За нас</div><h2 id="aboutTitle"></h2><p class="story" id="aboutText"></p></div>
+      <div class="team reveal" id="team"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact-in">
+      <div class="reveal">
+        <div class="eyebrow">Контакти</div>
+        <h2>Пишете ни</h2>
+        <div class="cinfo" id="cinfo"></div>
+        <div class="social" id="social"></div>
+      </div>
+      <form class="box reveal" id="cForm" novalidate>
+        <div class="two">
+          <div class="field"><label for="cName">Име</label><input id="cName" autocomplete="name"></div>
+          <div class="field"><label for="cMail">Имейл</label><input id="cMail" type="email" autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="cMsg">Съобщение</label><textarea id="cMsg"></textarea></div>
+        <div id="cFormMsg" hidden></div>
+        <button class="btn btn-main" type="submit">Изпрати</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div class="disclaimer" id="disclaimer"></div>
+<footer><div class="wrap"><span id="footName"></span><span>Ученическа виртуална фирма</span></div></footer>
+
+<button class="bot-fab" id="botFab" aria-label="Отвори чата"><span class="face" id="fabFace"></span><span id="fabLabel"></span></button>
+<div id="layer"></div>
+
+<script src="content.js"></script>
+<script>
+(function(){
+const C = window.CONTENT;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money = n => new Intl.NumberFormat("bg-BG",{style:"currency",currency:"EUR"}).format(n);
+const byId = id => C.products.find(p => p.id === id);
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- Рисунки на опаковките ---------- */
+let uid = 0;
+const tint = (hex, a) => { const n = parseInt(hex.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`; };
+function pack(p, x=0, y=0, s=1){
+  const id = "g"+(++uid), c = p.color;
+  const defs = `<defs><linearGradient id="${id}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient></defs>`;
+  let body, cap, lx, lw, ly, lh;
+  if (p.shape === "jug"){
+    body = "M44 92 Q44 70 66 66 L112 66 L112 50 L148 50 L148 66 Q170 70 170 96 L172 236 Q172 252 154 252 L62 252 Q42 252 42 236 Z";
+    cap = `<rect x="108" y="30" width="44" height="24" rx="6" fill="${c}" /><rect x="108" y="30" width="44" height="24" rx="6" fill="#000" opacity=".25"/><path d="M60 80 Q60 104 80 104 L96 104 Q104 104 104 92 L104 80" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="10" stroke-linecap="round"/>`;
+    lx=56; lw=104; ly=128; lh=96;
+  } else if (p.shape === "spray"){
+    body = "M70 104 Q70 88 86 86 L114 86 Q130 88 130 104 L136 238 Q136 252 120 252 L80 252 Q64 252 64 238 Z";
+    cap = `<path d="M84 86 L84 66 L118 66 L118 86 Z" fill="#E9ECEA"/><path d="M78 66 L78 42 Q78 32 90 32 L148 32 L156 44 L124 44 L124 66 Z" fill="#F4F6F4"/><path d="M78 66 L78 42 Q78 32 90 32 L148 32 L156 44 L124 44 L124 66 Z" fill="none" stroke="#000" stroke-opacity=".15" stroke-width="2"/><path d="M118 48 Q132 58 128 76" fill="none" stroke="#DDE1DE" stroke-width="7" stroke-linecap="round"/><rect x="146" y="34" width="10" height="8" rx="2" fill="${c}"/>`;
+    lx=72; lw=56; ly=128; lh=96;
+  } else {
+    body = "M66 92 Q66 76 82 72 L88 52 L112 52 L118 72 Q134 76 134 92 L142 238 Q142 252 126 252 L74 252 Q58 252 58 238 Z";
+    cap = `<rect x="84" y="30" width="32" height="24" rx="5" fill="#F4F6F4"/><rect x="84" y="30" width="32" height="24" rx="5" fill="none" stroke="#000" stroke-opacity=".15" stroke-width="2"/><rect x="92" y="24" width="16" height="8" rx="3" fill="${c}"/>`;
+    lx=66; lw=68; ly=124; lh=100;
+  }
+  const fs = Math.min(15, Math.max(9, (lw-10) / Math.max(4, p.label.length) * 1.55));
+  const label = `<rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" rx="10" fill="#FBFCFA"/>
+    <g transform="translate(${lx+lw/2} ${ly+20})"><circle r="9" fill="${c}"/><circle cx="-3" cy="-1" r="1.6" fill="#fff"/><circle cx="3" cy="-1" r="1.6" fill="#fff"/><path d="M-3 3 q3 2.4 6 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>
+    <text x="${lx+lw/2}" y="${ly+46}" text-anchor="middle" font-family="Golos Text, Arial, sans-serif" font-size="6.5" letter-spacing=".8" fill="#5A6A62">ДОБРИТЕ МИКРОБИ</text>
+    <text x="${lx+lw/2}" y="${ly+66}" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="700" font-size="${fs.toFixed(1)}" fill="${c}">${esc(p.label)}</text>
+    <rect x="${lx+10}" y="${ly+lh-20}" width="${lw-20}" height="3" rx="1.5" fill="${tint(c,.35)}"/>`;
+  return `<g transform="translate(${x} ${y}) scale(${s})">${defs}
+    <ellipse cx="${p.shape==="jug"?107:100}" cy="256" rx="${p.shape==="jug"?70:44}" ry="7" fill="#000" opacity=".12"/>
+    ${cap}<path d="${body}" fill="${c}"/><path d="${body}" fill="url(#${id})"/>${label}</g>`;
+}
+function art(p){
+  if (p.shape === "set"){
+    const a = byId("floor"), b = byId("laundry"), d = byId("multi");
+    return `<svg class="art" viewBox="0 0 220 270" aria-hidden="true">${pack(b,30,10,.86)}${pack(a,-28,50,.7)}${pack(d,94,50,.7)}</svg>`;
+  }
+  return `<svg class="art" viewBox="0 0 220 270" aria-hidden="true">${pack(p,8,4,1)}</svg>`;
+}
+const bgFor = p => `background:radial-gradient(circle at 50% 40%, ${tint(p.color,.16)}, ${tint(p.color,.05)} 70%)`;
+const media = p => p.image ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" decoding="async">` : art(p);
+
+const mikiFace = `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 22c0-8 5-13 12-13s12 5 11 12-7 11-13 10S8 28 8 22z" fill="#fff" opacity=".95"/><circle cx="16" cy="20" r="2.2" fill="#13261F"/><circle cx="24" cy="20" r="2.2" fill="#13261F"/><path d="M16 25.5q4 3 8 0" stroke="#13261F" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="12" cy="24" r="1.6" fill="#F2A7A0" opacity=".8"/><circle cx="28" cy="24" r="1.6" fill="#F2A7A0" opacity=".8"/></svg>`;
+
+/* ---------- Лента, лого, долу ---------- */
+const mq = C.marquee.map(t => `<span>${esc(t)}</span>`).join("");
+$("#marquee").innerHTML = mq + mq;
+$("#logoName").textContent = C.brand.name;
+$("#logoSub").textContent = C.brand.subtitle;
+$("#footName").textContent = `© 2026 ${C.brand.name}`;
+$("#disclaimer").textContent = C.brand.footerNote;
+
+/* ---------- Банер ---------- */
+const H = C.hero;
+$("#heroEyebrow").textContent = H.eyebrow; $("#heroLead").textContent = H.lead; $("#heroText").textContent = H.text;
+$("#heroBtn1").textContent = H.buttonMain; $("#heroBtn2").textContent = H.buttonSecond;
+let wi = 0; const showWord = () => { $("#heroWord").innerHTML = `<span>${esc(H.words[wi])}</span>`; };
+showWord(); if (!reduced) setInterval(() => { wi = (wi+1) % H.words.length; showWord(); }, 2600);
+const stage = $("#stage");
+stage.insertAdjacentHTML("afterbegin", H.slides.map((id,i) => { const p = byId(id); return `<div class="slide${i?"":" on"}" aria-hidden="${i!==0}">${art(p)}<div class="slide-cap">${esc(p.name)}</div></div>`; }).join(""));
+$("#dots").innerHTML = H.slides.map((s,i)=>`<button aria-label="Продукт ${i+1}" class="${i?"":"on"}"></button>`).join("");
+const slides = [...stage.querySelectorAll(".slide")], dots = [...$("#dots").children]; let si = 0, stimer;
+const go = n => { si = (n+slides.length)%slides.length; slides.forEach((s,i)=>{s.classList.toggle("on",i===si); s.setAttribute("aria-hidden",i!==si);}); dots.forEach((d,i)=>d.classList.toggle("on",i===si)); };
+const autoSlide = () => { clearInterval(stimer); if (!reduced) stimer = setInterval(()=>go(si+1), 5500); };
+dots.forEach((d,i)=>d.addEventListener("click",()=>{go(i); autoSlide();})); autoSlide();
+$("#heroBtn2").addEventListener("click", () => { toggleBot(true); setTimeout(startFlow, 400); });
+
+/* фонови микроби в банера */
+(function heroBugs(){
+  const cv = $("#heroBugs"), ctx = cv.getContext("2d"); let w,h,dpr; const bugs = [];
+  const size = () => { dpr = Math.min(2, devicePixelRatio||1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w*dpr; cv.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+  size(); addEventListener("resize", size);
+  for (let i=0;i<22;i++) bugs.push({x:Math.random()*w, y:Math.random()*h, r:6+Math.random()*16, a:Math.random()*6.28, s:.15+Math.random()*.35, t:Math.random()*10});
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for (const b of bugs){
+      b.t += .02; b.a += (Math.random()-.5)*.08; b.x += Math.cos(b.a)*b.s; b.y += Math.sin(b.a)*b.s;
+      if (b.x<-30) b.x=w+30; if (b.x>w+30) b.x=-30; if (b.y<-30) b.y=h+30; if (b.y>h+30) b.y=-30;
+      ctx.beginPath();
+      for (let k=0;k<=24;k++){ const ang=k/24*6.283, rr=b.r*(1+.12*Math.sin(ang*3+b.t)); const px=b.x+Math.cos(ang)*rr*1.3, py=b.y+Math.sin(ang)*rr; k?ctx.lineTo(px,py):ctx.moveTo(px,py); }
+      ctx.fillStyle="rgba(127,227,176,.10)"; ctx.fill(); ctx.strokeStyle="rgba(127,227,176,.35)"; ctx.lineWidth=1.2; ctx.stroke();
+    }
+    if (!reduced) requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ---------- Продукти ---------- */
+const cats = ["Всички", ...new Set(C.products.map(p=>p.category))]; let cat = "Всички";
+$("#filters").innerHTML = cats.map(c=>`<button class="chip" aria-pressed="${c===cat}">${esc(c)}</button>`).join("");
+$("#filters").addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; cat = b.textContent; [...$("#filters").children].forEach(x=>x.setAttribute("aria-pressed", x===b)); renderGrid(); });
+const priceHTML = p => `${money(p.price)}${p.oldPrice ? `<s>${money(p.oldPrice)}</s>` : ""}`;
+function renderGrid(){
+  $("#grid").innerHTML = C.products.filter(p => cat==="Всички" || p.category===cat).map(p => `
+    <article class="card reveal">
+      <button class="card-art" data-qv="${p.id}" style="${bgFor(p)}" aria-label="Повече за ${esc(p.name)}">
+        ${p.badge ? `<span class="badge${p.badge==="Нов"?" new":""}">${esc(p.badge)}</span>` : ""}${media(p)}<span class="qv">Повече</span>
+      </button>
+      <div class="card-body"><div><h3>${esc(p.name)}</h3><div class="meta">${esc(p.volume)}</div><div class="price">${priceHTML(p)}</div></div>
+        <button class="add" data-add="${p.id}" aria-label="Добави ${esc(p.name)} в количката">+</button></div>
+    </article>`).join("");
+}
+renderGrid();
+document.addEventListener("click", e => {
+  const q = e.target.closest("[data-qv]"); if (q) return openQuick(q.dataset.qv);
+  const a = e.target.closest("[data-add]"); if (a) addToCart(a.dataset.add);
+});
+
+/* ---------- Слой: модал / количка ---------- */
+const layer = $("#layer"); let lastFocus = null;
+const closeBtn = `<button class="icon-btn close" data-close aria-label="Затвори"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`;
+function openLayer(html){ lastFocus = document.activeElement; layer.innerHTML = `<div class="overlay" data-close></div>${html}`; document.body.style.overflow = "hidden"; const f = layer.querySelector("button, input"); f && f.focus(); }
+function closeLayer(){ layer.innerHTML = ""; document.body.style.overflow = ""; lastFocus && lastFocus.focus && lastFocus.focus(); }
+layer.addEventListener("click", e => { if (e.target.closest("[data-close]")) closeLayer(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ if (layer.innerHTML) closeLayer(); else if (botOpen) toggleBot(false); } });
+function openQuick(id){
+  const p = byId(id); let q = 1;
+  openLayer(`<div class="modal" role="dialog" aria-modal="true" aria-label="${esc(p.name)}">
+    <div class="modal-art" style="${bgFor(p)}">${media(p)}</div>
+    <div class="modal-body">${closeBtn}
+      <div class="eyebrow">${esc(p.category)}</div><h3>${esc(p.name)}</h3>
+      <div class="price" style="font-size:1.25rem">${priceHTML(p)}</div>
+      <p>${esc(p.text)}</p><div class="meta">${esc(p.volume)}</div>
+      <div><div class="meta" style="margin-bottom:4px;font-weight:600">Употреба</div><ul>${p.use.map(u=>`<li>${esc(u)}</li>`).join("")}</ul></div>
+      <div class="qty-row"><div class="qty"><button data-d="-1" aria-label="По-малко">−</button><span id="qvQ">1</span><button data-d="1" aria-label="Повече">+</button></div>
+      <button class="btn btn-main" id="qvAdd" style="flex:1">Добави в количката</button></div>
+      <div class="note">Безплатна доставка над ${money(C.delivery.freeOver)}</div>
+    </div></div>`);
+  layer.querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => { q = Math.max(1, q + +b.dataset.d); $("#qvQ").textContent = q; }));
+  $("#qvAdd").addEventListener("click", () => { addToCart(p.id, q); closeLayer(); });
+}
+
+/* ---------- Количка ---------- */
+let cart = [], promoOn = false;
+function toast(t){ const d = document.createElement("div"); d.className = "toast"; d.setAttribute("role","status"); d.textContent = t; document.body.appendChild(d); setTimeout(()=>d.remove(), 2200); }
+function addToCart(id, qty=1){ const f = cart.find(x=>x.id===id); f ? f.qty += qty : cart.push({id, qty}); updateCount(); toast(`Добавено: ${byId(id).name}`); }
+function updateCount(){ const el = $("#cartCount"); el.textContent = cart.reduce((a,x)=>a+x.qty,0); el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); if (layer.querySelector(".drawer")) renderCart(); }
+function totals(){ const sub = cart.reduce((a,x)=>a+byId(x.id).price*x.qty,0); const promo = promoOn ? sub*C.promo.percent/100 : 0; const after = sub-promo; const del = !cart.length || after >= C.delivery.freeOver ? 0 : C.delivery.price; return {sub, promo, del, total: after+del}; }
+function openCart(){ openLayer(`<aside class="drawer" role="dialog" aria-modal="true" aria-label="Количка"></aside>`); renderCart(); }
+function renderCart(done){
+  const d = layer.querySelector(".drawer"); if (!d) return;
+  const head = `<div class="drawer-head"><h3>Количка</h3>${closeBtn.replace("icon-btn close","icon-btn")}</div>`;
+  if (done){ d.innerHTML = head + `<div class="drawer-body"><div class="done"><div class="tick">✓</div><h3>Благодарим!</h3><p>Поръчка № ${done} е приета.</p><p class="note">Това е демо на ученическа виртуална фирма. Нищо не е платено и нищо няма да бъде изпратено.</p><button class="btn btn-line" data-close>Към сайта</button></div></div>`; return; }
+  if (!cart.length){ d.innerHTML = head + `<div class="drawer-body"><div class="empty"><p>Количката е празна.</p><p class="note">Не знаете какво да изберете? Попитайте Мики.</p></div></div>`; return; }
+  const t = totals();
+  d.innerHTML = head + `<div class="drawer-body">${cart.map((x,i)=>{ const p = byId(x.id); return `<div class="line"><div class="thumb" style="${bgFor(p)}">${media(p)}</div><div><b>${esc(p.name)}</b><small>${esc(p.volume)}</small>
+      <div class="qty" style="margin-top:6px"><button data-q="${i}" data-d="-1" aria-label="По-малко">−</button><span>${x.qty}</span><button data-q="${i}" data-d="1" aria-label="Повече">+</button></div></div><div class="price">${money(p.price*x.qty)}</div></div>`; }).join("")}</div>
+    <div class="drawer-foot">
+      <form class="promo" id="promoForm"><input id="promoIn" placeholder="Промо код" aria-label="Промо код" value="${promoOn?C.promo.code:""}"><button class="btn btn-line btn-sm" type="submit">Приложи</button></form>
+      <div class="note" id="promoMsg" hidden></div>
+      <div class="sumrow"><span>Междинна сума</span><span>${money(t.sub)}</span></div>
+      ${t.promo ? `<div class="sumrow disc"><span>Промо код −${C.promo.percent}%</span><span>−${money(t.promo)}</span></div>` : ""}
+      <div class="sumrow"><span>Доставка</span><span>${t.del ? money(t.del) : "Безплатна"}</span></div>
+      <div class="sumrow total"><span>Общо</span><span>${money(t.total)}</span></div>
+      <button class="btn btn-main" id="checkout">Поръчай</button>
+      <div class="note">Демо магазин. Поръчката не е истинска.</div>
+    </div>`;
+  d.querySelectorAll("[data-q]").forEach(b => b.addEventListener("click", () => { const x = cart[+b.dataset.q]; x.qty += +b.dataset.d; if (x.qty<=0) cart.splice(+b.dataset.q,1); updateCount(); }));
+  $("#promoForm").addEventListener("submit", e => { e.preventDefault(); if ($("#promoIn").value.trim().toUpperCase() === C.promo.code){ promoOn = true; renderCart(); toast(`Промо кодът е приложен: −${C.promo.percent}%`); } else { const m = $("#promoMsg"); m.hidden = false; m.textContent = "Този код не е валиден. Проверете дали е на латиница."; } });
+  $("#checkout").addEventListener("click", () => { const no = "DM-" + Math.floor(10000+Math.random()*89999); cart = []; promoOn = false; $("#cartCount").textContent = "0"; renderCart(no); });
+}
+$("#cartBtn").addEventListener("click", openCart);
+
+/* ---------- Мобилно меню ---------- */
+$("#menuBtn").addEventListener("click", () => { const m = $("#mobileNav"), open = m.hidden; m.hidden = !open; $("#menuBtn").setAttribute("aria-expanded", open); });
+$("#mobileNav").addEventListener("click", e => { if (e.target.tagName === "A"){ $("#mobileNav").hidden = true; $("#menuBtn").setAttribute("aria-expanded", false); } });
+
+/* ---------- Как действа: симулация ---------- */
+const S = C.science;
+$("#sciTitle").textContent = S.title; $("#sciText").textContent = S.text; $("#sciHint").textContent = S.demoHint;
+$("#sciSteps").innerHTML = S.steps.map((s,i)=>`<li><b>${i+1}</b><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join("");
+(function lab(){
+  const cv = $("#labCanvas"), ctx = cv.getContext("2d"); let w, h, dpr, dirt = [], bugs = [], total = 1, running = false, visible = true;
+  const size = () => { dpr = Math.min(2, devicePixelRatio||1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w*dpr; cv.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+  function spill(cx, cy, n=26){
+    cx ??= w*(.2+Math.random()*.6); cy ??= h*(.3+Math.random()*.5);
+    for (let i=0;i<n;i++){ const a=Math.random()*6.28, d=Math.random()*Math.min(w,h)*.16; dirt.push({x:cx+Math.cos(a)*d, y:cy+Math.sin(a)*d*.8, r:2+Math.random()*4.5}); }
+    total = Math.max(total, dirt.length); kick();
+  }
+  function reset(){
+    dirt = []; total = 1; bugs = [];
+    for (let i=0;i<9;i++) bugs.push({x:Math.random()*w, y:h*.25+Math.random()*h*.7, a:Math.random()*6.28, r:9+Math.random()*4, t:Math.random()*10, full:0});
+    spill(w*.32, h*.55, 30); spill(w*.7, h*.62, 24); total = dirt.length;
+  }
+  function meter(){ const pct = Math.round(100 - dirt.length/total*100); $("#cleanBar").style.width = pct+"%"; $("#cleanPct").textContent = pct+"%"; }
+  function step(){
+    for (const b of bugs){
+      b.t += .05; b.full = Math.max(0, b.full-.01);
+      let best = null, bd = 1e9; for (const d of dirt){ const dd = (d.x-b.x)**2+(d.y-b.y)**2; if (dd<bd){ bd = dd; best = d; } }
+      if (best){ const ta = Math.atan2(best.y-b.y, best.x-b.x); let da = ta-b.a; while (da>Math.PI) da-=6.283; while (da<-Math.PI) da+=6.283; b.a += da*.12; }
+      else b.a += (Math.random()-.5)*.25;
+      const sp = best ? 1.25 : .45; b.x += Math.cos(b.a)*sp; b.y += Math.sin(b.a)*sp;
+      b.x = Math.max(12, Math.min(w-12, b.x)); b.y = Math.max(54, Math.min(h-12, b.y));
+      if (best && bd < (b.r+best.r)**2){ dirt.splice(dirt.indexOf(best),1); b.full = 1; }
+    }
+  }
+  function draw(){
+    const green = cssVar("--mint") || "#3DB37C", ink = cssVar("--ink"), dc = cssVar("--dirt") || "#8A6A45", surf = cssVar("--surface-2");
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = surf; for (let x=0;x<w;x+=36) for (let y=0;y<h;y+=36) ctx.fillRect(x+17,y+17,2,2);
+    for (const d of dirt){ ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,6.283); ctx.fillStyle = dc; ctx.globalAlpha = .75; ctx.fill(); ctx.globalAlpha = 1; }
+    for (const b of bugs){
+      const rr = b.r*(1+b.full*.25);
+      ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.a);
+      ctx.beginPath(); for (let k=0;k<=28;k++){ const an=k/28*6.283, m=1+.1*Math.sin(an*4+b.t*2); const px=Math.cos(an)*rr*1.35*m, py=Math.sin(an)*rr*m; k?ctx.lineTo(px,py):ctx.moveTo(px,py); }
+      ctx.fillStyle = green; ctx.globalAlpha = .9; ctx.fill(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = green; ctx.lineWidth = 1.4; for (let k=-1;k<=1;k++){ ctx.beginPath(); ctx.moveTo(-rr*1.3, k*rr*.4); ctx.quadraticCurveTo(-rr*1.8, k*rr*.6+Math.sin(b.t*3+k)*3, -rr*2.1, k*rr*.7); ctx.stroke(); }
+      ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(rr*.55,-rr*.3,rr*.22,0,6.283); ctx.arc(rr*.55,rr*.3,rr*.22,0,6.283); ctx.fill();
+      ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(rr*.62,-rr*.3,rr*.11,0,6.283); ctx.arc(rr*.62,rr*.3,rr*.11,0,6.283); ctx.fill();
+      ctx.restore();
+    }
+    meter();
+  }
+  function loop(){ if (!visible){ running = false; return; } step(); draw(); if (!dirt.length && bugs.every(b=>b.full<.05)) { running = false; return; } requestAnimationFrame(loop); }
+  function kick(){ if (reduced){ for (let i=0;i<400 && dirt.length;i++) step(); draw(); return; } if (!running){ running = true; requestAnimationFrame(loop); } }
+  size(); reset(); draw();
+  addEventListener("resize", () => { size(); draw(); });
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) kick(); }).observe(cv);
+  cv.addEventListener("pointerdown", e => { const r = cv.getBoundingClientRect(); spill(e.clientX-r.left, e.clientY-r.top, 16); });
+  $("#spill").addEventListener("click", () => spill());
+  $("#resetLab").addEventListener("click", () => { reset(); kick(); });
+})();
+
+/* ---------- Къде помага ---------- */
+const ICONS = {
+  home: '<path d="M4 11 12 4l8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/>',
+  kids: '<circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7"/><path d="M9.5 8.2h.01M14.5 8.2h.01"/>',
+  pets: '<circle cx="6" cy="10" r="2"/><circle cx="10" cy="6" r="2"/><circle cx="14" cy="6" r="2"/><circle cx="18" cy="10" r="2"/><path d="M8 17c0-3 2-5 4-5s4 2 4 5c0 2-2 3-4 3s-4-1-4-3z"/>',
+  birds: '<path d="M7 20c-1-5 0-11 6-13 3-1 6 1 6 4l3 1-3 1c0 4-3 7-7 7"/><circle cx="15" cy="10" r=".8"/><path d="M10 20v2M13 19v3"/>',
+  car: '<path d="M4 16v-4l2-5h12l2 5v4z"/><path d="M4 12h16"/><circle cx="8" cy="16" r="2"/><circle cx="16" cy="16" r="2"/>'
+};
+$("#placesGrid").innerHTML = C.places.map(pl => `<div class="place reveal ${pl.icon}"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[pl.icon]||ICONS.home}</svg></div><h3>${esc(pl.title)}</h3><p>${esc(pl.text)}</p><div class="links">${pl.products.map(byId).filter(Boolean).map(p=>`<button data-qv="${p.id}">${esc(p.name)}</button>`).join("")}</div></div>`).join("");
+
+/* ---------- Числа ---------- */
+$("#facts").innerHTML = C.facts.map(f => `<div class="fact"><b data-to="${f.value}" data-suf="${esc(f.suffix)}">${f.value}${esc(f.suffix)}</b><span>${esc(f.label)}</span></div>`).join("");
+if (!reduced) new IntersectionObserver((es, ob) => { if (!es[0].isIntersecting) return; ob.disconnect();
+  document.querySelectorAll("#facts b").forEach(b => { const to = +b.dataset.to, suf = b.dataset.suf, t0 = performance.now();
+    const f = t => { const k = Math.min(1,(t-t0)/1400), e = 1-(1-k)**3; b.textContent = Math.round(to*e)+suf; if (k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); });
+}, {threshold:.4}).observe($("#facts"));
+
+/* ---------- Мостри ---------- */
+const SM = C.samples;
+$("#smpTitle").textContent = SM.title; $("#smpText").textContent = SM.text;
+$("#smpPick").innerHTML = SM.products.map((id,i)=>{ const p = byId(id); return `<label style="${bgFor(p)}"><input type="radio" name="smp" value="${id}" ${i?"":"checked"}>${art(p)}<span>${esc(p.name)}</span></label>`; }).join("");
+$("#smpForm").addEventListener("submit", e => { e.preventDefault(); const m = $("#smpMsg"), ok = $("#sName").value.trim() && /\S+@\S+\.\S+/.test($("#sMail").value);
+  m.hidden = false; if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име и валиден имейл."; return; }
+  const p = byId(e.target.smp.value); m.className = "form-ok"; m.textContent = `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо няма да бъде изпратено).`; e.target.reset(); e.target.smp[0].checked = true; });
+
+/* ---------- Брояч ---------- */
+const L = C.launch;
+$("#launchLabel").textContent = L.label; $("#launchTitle").textContent = L.title; $("#launchText").textContent = L.text;
+const target = new Date(L.date).getTime();
+const tick = () => { let d = Math.max(0, target-Date.now()); $("#clock").innerHTML = [["дни",864e5],["часа",36e5],["мин",6e4],["сек",1e3]].map(([l,ms])=>{ const v = Math.floor(d/ms); d -= v*ms; return `<div><b>${String(v).padStart(2,"0")}</b><span>${l}</span></div>`; }).join(""); };
+tick(); setInterval(tick, 1000);
+
+/* ---------- Въпроси, за нас, контакти ---------- */
+$("#faqList").innerHTML = C.faq.map(f => `<details class="reveal"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
+$("#aboutTitle").textContent = C.about.title; $("#aboutText").textContent = C.about.text;
+const personIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
+$("#team").innerHTML = C.team.map(m => `<div class="person"><div class="avatar">${personIco}</div><div><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div></div>`).join("");
+const K = C.contacts;
+$("#cinfo").innerHTML = [["Имейл",K.email],["Телефон",K.phone],["Адрес",K.address],["Работно време",K.hours]].map(([l,v])=>`<div><small>${l}</small><div>${esc(v)}</div></div>`).join("");
+$("#social").innerHTML = K.social.map(s=>`<span class="chip">${esc(s)}</span>`).join("");
+$("#cForm").addEventListener("submit", e => { e.preventDefault(); const m = $("#cFormMsg"), ok = $("#cName").value.trim() && /\S+@\S+\.\S+/.test($("#cMail").value) && $("#cMsg").value.trim();
+  m.hidden = false; if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име, валиден имейл и съобщение."; return; }
+  m.className = "form-ok"; m.textContent = "Благодарим! Съобщението е получено (демо)."; e.target.reset(); });
+
+/* ---------- Бот Мики ---------- */
+const B = C.bot; let botOpen = false, history = [], flow = null;
+$("#fabFace").innerHTML = mikiFace; $("#fabLabel").textContent = `Попитай ${B.name}`;
+function toggleBot(open){
+  botOpen = open; const ex = document.getElementById("bot");
+  if (!open){ ex && ex.remove(); $("#botFab").hidden = false; $("#botFab").focus(); return; }
+  if (ex) return;
+  $("#botFab").hidden = true;
+  document.body.insertAdjacentHTML("beforeend", `<div class="bot" id="bot" role="dialog" aria-label="Чат с ${esc(B.name)}">
+    <div class="bot-head"><span class="face">${mikiFace}</span><div><b>${esc(B.name)}</b><small>${esc(B.role)} · онлайн</small></div><button id="botClose" aria-label="Затвори чата">×</button></div>
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <form class="bot-in" id="botForm"><input id="botText" placeholder="Напиши въпрос…" aria-label="Съобщение" autocomplete="off"><button aria-label="Изпрати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form></div>`);
+  $("#botClose").addEventListener("click", () => toggleBot(false));
+  $("#botForm").addEventListener("submit", e => { e.preventDefault(); const v = $("#botText").value.trim(); if (!v) return; $("#botText").value = ""; say(v, true); handle(v); });
+  $("#msgs").addEventListener("click", onBotClick);
+  if (!history.length) botSay(B.hello, mainQuick()); else history.forEach(hh => $("#msgs").insertAdjacentHTML("beforeend", hh));
+  scrollMsgs(); $("#botText").focus();
+}
+const scrollMsgs = () => { const m = $("#msgs"); if (m) m.scrollTop = m.scrollHeight; };
+const push = html => { history.push(html); const m = $("#msgs"); if (m){ m.insertAdjacentHTML("beforeend", html); scrollMsgs(); } };
+const quick = items => `<div class="quick">${items.map(([a,l])=>`<button data-act="${esc(a)}">${esc(l)}</button>`).join("")}</div>`;
+const mainQuick = () => [["pick","Кой продукт ми трябва?"], ...B.faq.map((f,i)=>["faq:"+i, f.button])];
+const say = (t, me) => push(`<div class="msg ${me?"me":"b"}">${esc(t)}</div>`);
+let botQueue = Promise.resolve();
+function botSay(text, q, extra=""){
+  botQueue = botQueue.then(() => new Promise(res => {
+    const m = $("#msgs"); if (!m) return res();
+    m.insertAdjacentHTML("beforeend", `<div class="msg b typing"><i></i><i></i><i></i></div>`); scrollMsgs();
+    setTimeout(() => { m.querySelectorAll(".typing").forEach(x=>x.remove()); push(`<div class="msg b">${esc(text)}</div>` + extra + (q ? quick(q) : "")); res(); }, reduced ? 50 : 600 + Math.min(900, text.length*5));
+  }));
+}
+const clearQuick = () => { document.querySelectorAll("#msgs .quick").forEach(x=>x.remove()); history = history.map(hh => hh.replace(/<div class="quick">[\s\S]*?<\/div>/g, "")); };
+function onBotClick(e){
+  const ad = e.target.closest("[data-badd]"); if (ad){ addToCart(ad.dataset.badd); ad.textContent = "✓"; ad.disabled = true; return; }
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const act = b.dataset.act; clearQuick();
+  say(b.textContent, true);
+  if (act === "pick") startFlow();
+  else if (act.startsWith("faq:")) botSay(B.faq[+act.slice(4)].answer, [["pick","Кой продукт ми трябва?"],["menu","Друг въпрос"]]);
+  else if (act.startsWith("w:")){ flow.where = act.slice(2); botSay(B.askNeed, B.needOptions.map(o=>["n:"+o.id, o.label])); }
+  else if (act.startsWith("n:")){ flow.need = act.slice(2); recommend(); }
+  else if (act === "menu") botSay("С какво друго да помогна?", mainQuick());
+  else if (act === "cart"){ toggleBot(false); openCart(); }
+}
+function startFlow(){ if (!$("#msgs")) return; clearQuick(); flow = {}; botSay(B.askWhere, B.whereOptions.map(o=>["w:"+o.id, o.label])); }
+function recommend(){
+  const list = C.products.map(p => ({p, s:(p.where.includes(flow.where)?2:0) + (p.need.includes(flow.need)?2.5:0) + (p.shape==="set"?.3:0)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,3).map(x=>x.p);
+  const pre = flow.where === "birds" ? "Важно при птиците: проветрявайте и почиствайте, докато птицата е в друга стая. " : "";
+  const cards = `<div class="recs">${list.map(p=>`<div class="rec"><div class="thumb" style="${bgFor(p)}">${media(p)}</div><div><b>${esc(p.name)}</b><small>${money(p.price)}</small></div><button class="add" data-badd="${p.id}" aria-label="Добави ${esc(p.name)}">+</button></div>`).join("")}</div>`;
+  botSay(pre + B.resultIntro, [["cart","Към количката"],["pick","Нов избор"],["menu","Друг въпрос"]], cards); flow = null;
+}
+function handle(text){
+  const t = text.toLowerCase();
+  if (/здрав|здрасти|привет|хей|добър ден/.test(t)) return botSay("Здравей и от мен! С какво да помогна?", mainQuick());
+  if (/благодар|мерси/.test(t)) return botSay("Моля! Пиши ми, ако имаш още въпроси.", mainQuick());
+  if (/избер|препоръ|какво да|трябва|съвет/.test(t)) return startFlow();
+  const f = B.faq.find(f => f.keywords.some(k => t.includes(k)));
+  if (f) return botSay(f.answer, [["pick","Кой продукт ми трябва?"],["menu","Друг въпрос"]]);
+  if (/цена|колко струва|евтин|скъп/.test(t)) return botSay(`Цените са от ${money(Math.min(...C.products.map(p=>p.price)))} до ${money(Math.max(...C.products.map(p=>p.price)))}. С код ${C.promo.code} получаваш −${C.promo.percent}%.`, mainQuick());
+  botSay(B.notUnderstood, mainQuick());
+}
+$("#botFab").addEventListener("click", () => toggleBot(true));
+})();
+</script>
+
+</body>
+</html>
