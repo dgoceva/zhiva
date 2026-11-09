@@ -227,3 +227,4 @@ window.CONTENT = {
   promo: { code: "MIKROBI10", percent: 10 },
   delivery: { price: 3.90, freeOver: 40 }
 };
+
