@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Добрите микроби – пробиотични почистващи продукти за дома, децата, домашните любимци и колата. Проект на ученическа виртуална фирма.">
+<meta name="description" content="Zhiva Nature – пробиотични почистващи продукти за дома, децата, домашните любимци и колата. Проект на ученическа виртуална фирма.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2219%22%20fill%3D%22%23CBE4F9%22/%3E%3Cpath%20d%3D%22M12%2022c0-6%204-10%209-10s8%204%207%209-5%208-10%207-6-3-6-6z%22%20fill%3D%22%23B9A3EA%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2219%22%20r%3D%221.8%22%20fill%3D%22%232B2946%22/%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2219%22%20r%3D%221.8%22%20fill%3D%22%232B2946%22/%3E%3Cpath%20d%3D%22M17%2024q3%202.4%206%200%22%20stroke%3D%22%232B2946%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E">
-<link rel="canonical" href="https://dgoceva.github.io/zhiva/">
-<meta property="og:title" content="Добрите микроби – пробиотична грижа за дома">
+<link rel="canonical" href="https://zhivanature.com/">
+<meta property="og:title" content="Zhiva Nature – пробиотична грижа за дома">
 <meta property="og:description" content="Почистване, което продължава да работи. Проект на ученическа виртуална фирма.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://dgoceva.github.io/zhiva/">
-<meta property="og:image" content="https://dgoceva.github.io/zhiva/og-image.png">
+<meta property="og:url" content="https://zhivanature.com/">
+<meta property="og:image" content="https://zhivanature.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Добрите микроби</title>
+<title>Zhiva Nature</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Golos+Text:wght@400;500;600&display=swap">
@@ -587,7 +587,7 @@ function pack(p, x=0, y=0, s=1){
   const fs = Math.min(15, Math.max(9, (lw-10) / Math.max(4, p.label.length) * 1.55));
   const label = `<rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" rx="10" fill="#FBFCFA"/>
     <g transform="translate(${lx+lw/2} ${ly+20})"><circle r="9" fill="${c}"/><circle cx="-3" cy="-1" r="1.6" fill="#fff"/><circle cx="3" cy="-1" r="1.6" fill="#fff"/><path d="M-3 3 q3 2.4 6 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>
-    <text x="${lx+lw/2}" y="${ly+46}" text-anchor="middle" font-family="Golos Text, Arial, sans-serif" font-size="6.5" letter-spacing=".8" fill="#5A6A62">ДОБРИТЕ МИКРОБИ</text>
+    <text x="${lx+lw/2}" y="${ly+46}" text-anchor="middle" font-family="Golos Text, Arial, sans-serif" font-size="6" letter-spacing=".4" fill="#5A6A62">${esc(C.brand.name.toUpperCase())}</text>
     <text x="${lx+lw/2}" y="${ly+66}" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="700" font-size="${fs.toFixed(1)}" fill="${shade(c,.35)}">${esc(p.label)}</text>
     <rect x="${lx+10}" y="${ly+lh-20}" width="${lw-20}" height="3" rx="1.5" fill="${tint(c,.35)}"/>`;
   return `<g transform="translate(${x} ${y}) scale(${s})">${defs}
@@ -723,7 +723,7 @@ function renderCart(done){
     </div>`;
   d.querySelectorAll("[data-q]").forEach(b => b.addEventListener("click", () => { const x = cart[+b.dataset.q]; x.qty += +b.dataset.d; if (x.qty<=0) cart.splice(+b.dataset.q,1); updateCount(); }));
   $("#promoForm").addEventListener("submit", e => { e.preventDefault(); if ($("#promoIn").value.trim().toUpperCase() === C.promo.code){ promoOn = true; renderCart(); toast(`Промо кодът е приложен: −${C.promo.percent}%`); } else { const m = $("#promoMsg"); m.hidden = false; m.textContent = "Този код не е валиден. Проверете дали е на латиница."; } });
-  $("#checkout").addEventListener("click", () => { const no = "DM-" + Math.floor(10000+Math.random()*89999); cart = []; promoOn = false; $("#cartCount").textContent = "0"; renderCart(no); });
+  $("#checkout").addEventListener("click", () => { const no = "ZN-" + Math.floor(10000+Math.random()*89999); cart = []; promoOn = false; $("#cartCount").textContent = "0"; renderCart(no); });
 }
 $("#cartBtn").addEventListener("click", openCart);
 
@@ -821,7 +821,7 @@ $("#smpForm").addEventListener("submit", async e => { e.preventDefault(); const 
   if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име и валиден имейл."; return; }
   if (!$("#sAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
   const p = byId(f.smp.value);
-  const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name, "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() });
+  const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name, "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() }, "Нова заявка за мостра – " + C.brand.name);
   if (sent === false){ m.className = "form-err"; m.textContent = "Заявката не можа да бъде изпратена. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? `Благодарим! Заявката за мостра от „${p.name}“ е изпратена.` : `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо не е изпратено).`;
   f.reset(); f.smp[0].checked = true; });
@@ -846,18 +846,20 @@ $("#cForm").addEventListener("submit", async e => { e.preventDefault(); const m 
   const ok = $("#cName").value.trim() && /\S+@\S+\.\S+/.test($("#cMail").value) && $("#cMsg").value.trim(); m.hidden = false;
   if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име, валиден имейл и съобщение."; return; }
   if (!$("#cAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
-  const sent = await sendForm((C.forms||{}).contact, { "Форма": "Съобщение от сайта", "Име": $("#cName").value.trim(), "Имейл": $("#cMail").value.trim(), "Съобщение": $("#cMsg").value.trim() });
+  const sent = await sendForm((C.forms||{}).contact, { "Форма": "Съобщение от сайта", "Име": $("#cName").value.trim(), "Имейл": $("#cMail").value.trim(), "Съобщение": $("#cMsg").value.trim() }, "Ново съобщение от сайта – " + C.brand.name);
   if (sent === false){ m.className = "form-err"; m.textContent = "Съобщението не можа да бъде изпратено. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? "Благодарим! Съобщението е изпратено." : "Благодарим! Съобщението е получено (демо – нищо не е изпратено).";
   e.target.reset(); });
 
 /* ---------- Изпращане на формите ---------- */
-async function sendForm(endpoint, data){
-  if (!endpoint) return null;                       // демо режим
+async function sendForm(endpoint, data, subject){
+  if (!endpoint) return null;                       // демо режим – нищо не се изпраща
   try {
-    const fd = new FormData(); Object.entries(data).forEach(([k,v]) => fd.append(k, v));
-    const r = await fetch(endpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } });
-    return r.ok;
+    const r = await fetch(endpoint, { method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ _subject: subject || ("Съобщение от сайта – " + C.brand.name), _template: "table", _captcha: "false", ...data }) });
+    const j = await r.json().catch(() => ({}));
+    return r.ok && String(j.success) !== "false";
   } catch(err){ return false; }
 }
 
