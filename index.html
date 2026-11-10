@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Добрите микроби – пробиотични почистващи продукти за дома, децата, домашните любимци и колата. Проект на ученическа виртуална фирма.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2219%22%20fill%3D%22%23CBE4F9%22/%3E%3Cpath%20d%3D%22M12%2022c0-6%204-10%209-10s8%204%207%209-5%208-10%207-6-3-6-6z%22%20fill%3D%22%23B9A3EA%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2219%22%20r%3D%221.8%22%20fill%3D%22%232B2946%22/%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2219%22%20r%3D%221.8%22%20fill%3D%22%232B2946%22/%3E%3Cpath%20d%3D%22M17%2024q3%202.4%206%200%22%20stroke%3D%22%232B2946%22%20stroke-width%3D%221.6%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E">
+<link rel="canonical" href="https://dgoceva.github.io/zhiva/">
 <meta property="og:title" content="Добрите микроби – пробиотична грижа за дома">
 <meta property="og:description" content="Почистване, което продължава да работи. Проект на ученическа виртуална фирма.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://dgoceva.github.io/zhiva/">
+<meta property="og:image" content="https://dgoceva.github.io/zhiva/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Добрите микроби</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +56,7 @@ a{color:inherit}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--green)}
 .lead{color:var(--muted);max-width:60ch;margin-top:12px}
 section{padding-block:clamp(56px,9vw,100px)}
+main [id]{scroll-margin-top:72px}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
 .sec-head > div{min-width:0}
 
@@ -79,6 +85,15 @@ nav.main{display:flex;gap:24px}
 nav.main a{text-decoration:none;font-weight:500;font-size:.93rem;position:relative}
 nav.main a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--mint);transition:right .25s}
 nav.main a:hover::after{right:0}
+.more-menu{position:relative}
+.more-menu > button{background:none;border:0;padding:0;font-weight:500;font-size:.93rem;color:inherit;display:flex;align-items:center;gap:4px}
+.more-menu > button span{font-size:.7em;transition:transform .2s}
+.more-menu > button[aria-expanded="true"] span{transform:rotate(180deg)}
+.more-list{position:absolute;right:-12px;top:calc(100% + 14px);background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:6px;min-width:180px;display:grid;z-index:45}
+.more-list[hidden]{display:none}
+.more-list a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:500;font-size:.93rem}
+.more-list a::after{display:none}
+.more-list a:hover{background:var(--surface-2)}
 .top-actions{display:flex;align-items:center;gap:8px}
 .icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;position:relative;flex:none}
 .icon-btn svg{width:20px;height:20px}
@@ -237,9 +252,42 @@ form.box{background:var(--surface);border:1px solid var(--line);border-radius:22
 .social{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
 @media (max-width:820px){ .contact-in{grid-template-columns:1fr} }
 
-footer{border-top:1px solid var(--line);padding-block:30px;color:var(--muted);font-size:.85rem}
+footer{border-top:1px solid var(--line);padding-top:30px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .disclaimer{background:var(--surface-2);color:var(--ink);font-size:.82rem;text-align:center;padding-block:10px}
+
+/* съвети, партньори, отзиви, правна информация */
+.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.tip{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.tip .ico{width:46px;height:46px;border-radius:14px;background:var(--surface-2);display:grid;place-items:center;color:var(--green)}
+.tip .ico svg{width:26px;height:26px}
+.tip .tag{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
+.tip h3{font-size:1rem}
+.tip p{color:var(--muted);font-size:.9rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.partners{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.partner{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:2px}
+.partner span{color:var(--muted);font-size:.88rem}
+.partners-empty{background:var(--surface);border:1px dashed var(--line);border-radius:20px;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.partners-empty p{color:var(--muted);max-width:60ch}
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.review{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
+.review blockquote{margin:0 0 10px;font-size:1rem}
+.review figcaption{color:var(--muted);font-size:.86rem}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--muted)}
+.consent input{margin-top:3px;accent-color:var(--green);flex:none}
+.linklike{background:none;border:0;padding:0;color:var(--green);text-decoration:underline;font:inherit;cursor:pointer}
+details.more{border-top:1px solid var(--line);padding-top:8px}
+details.more summary{cursor:pointer;font-weight:600;font-size:.9rem}
+details.more p,details.more ul{color:var(--muted);font-size:.88rem;margin:6px 0 0}
+.modal.text{grid-template-columns:1fr;width:min(720px,calc(100vw - 32px))}
+.modal.text .modal-body{padding:clamp(22px,4vw,36px);gap:14px}
+.modal.text .modal-body p{color:var(--muted);line-height:1.7}
+.legal-links{display:flex;gap:16px;flex-wrap:wrap}
+.legal-links button{background:none;border:0;padding:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer}
+.foot-social{display:flex;gap:6px;flex-wrap:wrap}
+.chip.soon{color:var(--muted)}
+.chip.soon small{font-size:.7rem;background:var(--surface-2);border-radius:999px;padding:1px 7px;margin-left:4px}
+a.chip{text-decoration:none}
 
 /* модал и количка */
 .overlay{position:fixed;inset:0;background:rgba(18,10,30,.55);z-index:60;backdrop-filter:blur(3px);animation:fade .25s}
@@ -335,7 +383,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <span><b id="logoName"></b><small id="logoSub"></small></span>
     </a>
     <nav class="main" aria-label="Основно меню">
-      <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#contact">Контакти</a>
+      <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#contact">Контакти</a>
+      <div class="more-menu"><button type="button" id="moreBtn" aria-expanded="false" aria-controls="moreList">Още <span aria-hidden="true">▾</span></button>
+        <div class="more-list" id="moreList" hidden><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a></div></div>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Количка">
@@ -348,7 +398,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </div>
   <div class="mobile-nav wrap" id="mobileNav" hidden>
-    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#contact">Контакти</a>
+    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a><a href="#contact">Контакти</a>
   </div>
 </header>
 
@@ -423,6 +473,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div class="field"><label for="sCity">Град</label><input id="sCity" autocomplete="address-level2"></div>
         </div>
         <div class="field"><label for="sMail">Имейл</label><input id="sMail" type="email" autocomplete="email"></div>
+        <label class="consent"><input type="checkbox" id="sAgree"> <span>Съгласен съм с <button type="button" class="linklike" data-legal="privacy">политиката за поверителност</button></span></label>
         <div id="smpMsg" hidden></div>
         <button class="btn btn-main" type="submit">Заяви мостра</button>
       </form>
@@ -438,10 +489,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section id="tips" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Съвети</div><h2>Полезно за дома</h2><p class="lead">Кратки съвети за чист дом без излишна химия.</p></div></div>
+      <div class="tips" id="tipsGrid"></div>
+    </div>
+  </section>
+
   <section id="faq" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head reveal"><div><div class="eyebrow">Въпроси</div><h2>Често питат</h2></div></div>
       <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+  <section id="reviews" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Отзиви</div><h2>Какво казват хората</h2></div></div>
+      <div class="reviews" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <section id="partners" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow">Къде да ни намерите</div><h2>Партньори</h2></div></div>
+      <div id="partnersBox"></div>
     </div>
   </section>
 
@@ -466,6 +538,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div class="field"><label for="cMail">Имейл</label><input id="cMail" type="email" autocomplete="email"></div>
         </div>
         <div class="field"><label for="cMsg">Съобщение</label><textarea id="cMsg"></textarea></div>
+        <label class="consent"><input type="checkbox" id="cAgree"> <span>Съгласен съм с <button type="button" class="linklike" data-legal="privacy">политиката за поверителност</button></span></label>
         <div id="cFormMsg" hidden></div>
         <button class="btn btn-main" type="submit">Изпрати</button>
       </form>
@@ -474,7 +547,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </main>
 
 <div class="disclaimer" id="disclaimer"></div>
-<footer><div class="wrap"><span id="footName"></span><span>Ученическа виртуална фирма</span></div></footer>
+<footer><div class="wrap"><span id="footName"></span><nav class="legal-links" aria-label="Правна информация"><button type="button" data-legal="privacy">Поверителност</button><button type="button" data-legal="terms">Общи условия</button><button type="button" data-legal="delivery">Доставка и връщане</button></nav><div class="foot-social" id="footSocial"></div></div></footer>
 
 <button class="bot-fab" id="botFab" aria-label="Отвори чата"><span class="face" id="fabFace"></span><span id="fabLabel"></span></button>
 <div id="layer"></div>
@@ -613,6 +686,8 @@ function openQuick(id){
       <div class="price" style="font-size:1.25rem">${priceHTML(p)}</div>
       <p>${esc(p.text)}</p><div class="meta">${esc(p.volume)}</div>
       <div><div class="meta" style="margin-bottom:4px;font-weight:600">Употреба</div><ul>${p.use.map(u=>`<li>${esc(u)}</li>`).join("")}</ul></div>
+      <details class="more"><summary>Състав</summary><p>${esc((C.ingredients||{})[p.id] || "Предстои.")}</p></details>
+      <details class="more"><summary>Безопасност</summary><ul>${(C.safety||[]).map(s=>`<li>${esc(s)}</li>`).join("")}</ul></details>
       <div class="qty-row"><div class="qty"><button data-d="-1" aria-label="По-малко">−</button><span id="qvQ">1</span><button data-d="1" aria-label="Повече">+</button></div>
       <button class="btn btn-main" id="qvAdd" style="flex:1">Добави в количката</button></div>
       <div class="note">Безплатна доставка над ${money(C.delivery.freeOver)}</div>
@@ -651,6 +726,14 @@ function renderCart(done){
   $("#checkout").addEventListener("click", () => { const no = "DM-" + Math.floor(10000+Math.random()*89999); cart = []; promoOn = false; $("#cartCount").textContent = "0"; renderCart(no); });
 }
 $("#cartBtn").addEventListener("click", openCart);
+
+/* ---------- Меню „Още“ ---------- */
+const moreBtn = $("#moreBtn"), moreList = $("#moreList");
+const setMore = open => { moreList.hidden = !open; moreBtn.setAttribute("aria-expanded", open); };
+moreBtn.addEventListener("click", e => { e.stopPropagation(); setMore(moreList.hidden); });
+moreList.addEventListener("click", e => { if (e.target.tagName === "A") setMore(false); });
+document.addEventListener("click", e => { if (!e.target.closest(".more-menu")) setMore(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMore(false); });
 
 /* ---------- Мобилно меню ---------- */
 $("#menuBtn").addEventListener("click", () => { const m = $("#mobileNav"), open = m.hidden; m.hidden = !open; $("#menuBtn").setAttribute("aria-expanded", open); });
@@ -733,9 +816,15 @@ if (!reduced) new IntersectionObserver((es, ob) => { if (!es[0].isIntersecting) 
 const SM = C.samples;
 $("#smpTitle").textContent = SM.title; $("#smpText").textContent = SM.text;
 $("#smpPick").innerHTML = SM.products.map((id,i)=>{ const p = byId(id); return `<label style="${bgFor(p)}"><input type="radio" name="smp" value="${id}" ${i?"":"checked"}>${art(p)}<span>${esc(p.name)}</span></label>`; }).join("");
-$("#smpForm").addEventListener("submit", e => { e.preventDefault(); const m = $("#smpMsg"), ok = $("#sName").value.trim() && /\S+@\S+\.\S+/.test($("#sMail").value);
-  m.hidden = false; if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име и валиден имейл."; return; }
-  const p = byId(e.target.smp.value); m.className = "form-ok"; m.textContent = `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо няма да бъде изпратено).`; e.target.reset(); e.target.smp[0].checked = true; });
+$("#smpForm").addEventListener("submit", async e => { e.preventDefault(); const f = e.target, m = $("#smpMsg");
+  const ok = $("#sName").value.trim() && /\S+@\S+\.\S+/.test($("#sMail").value); m.hidden = false;
+  if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име и валиден имейл."; return; }
+  if (!$("#sAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
+  const p = byId(f.smp.value);
+  const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name, "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() });
+  if (sent === false){ m.className = "form-err"; m.textContent = "Заявката не можа да бъде изпратена. Опитайте отново след малко."; return; }
+  m.className = "form-ok"; m.textContent = sent ? `Благодарим! Заявката за мостра от „${p.name}“ е изпратена.` : `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо не е изпратено).`;
+  f.reset(); f.smp[0].checked = true; });
 
 /* ---------- Брояч ---------- */
 const L = C.launch;
@@ -751,10 +840,49 @@ const personIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 $("#team").innerHTML = C.team.map(m => `<div class="person"><div class="avatar">${personIco}</div><div><b>${esc(m.name)}</b><span>${esc(m.role)}</span></div></div>`).join("");
 const K = C.contacts;
 $("#cinfo").innerHTML = [["Имейл",K.email],["Телефон",K.phone],["Адрес",K.address],["Работно време",K.hours]].map(([l,v])=>`<div><small>${l}</small><div>${esc(v)}</div></div>`).join("");
-$("#social").innerHTML = K.social.map(s=>`<span class="chip">${esc(s)}</span>`).join("");
-$("#cForm").addEventListener("submit", e => { e.preventDefault(); const m = $("#cFormMsg"), ok = $("#cName").value.trim() && /\S+@\S+\.\S+/.test($("#cMail").value) && $("#cMsg").value.trim();
-  m.hidden = false; if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име, валиден имейл и съобщение."; return; }
-  m.className = "form-ok"; m.textContent = "Благодарим! Съобщението е получено (демо)."; e.target.reset(); });
+const socialHTML = () => K.social.map(s => s.url ? `<a class="chip" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)} ↗</a>` : `<span class="chip soon" title="Профилът предстои">${esc(s.name)} <small>скоро</small></span>`).join("");
+$("#social").innerHTML = socialHTML(); $("#footSocial").innerHTML = socialHTML();
+$("#cForm").addEventListener("submit", async e => { e.preventDefault(); const m = $("#cFormMsg");
+  const ok = $("#cName").value.trim() && /\S+@\S+\.\S+/.test($("#cMail").value) && $("#cMsg").value.trim(); m.hidden = false;
+  if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име, валиден имейл и съобщение."; return; }
+  if (!$("#cAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
+  const sent = await sendForm((C.forms||{}).contact, { "Форма": "Съобщение от сайта", "Име": $("#cName").value.trim(), "Имейл": $("#cMail").value.trim(), "Съобщение": $("#cMsg").value.trim() });
+  if (sent === false){ m.className = "form-err"; m.textContent = "Съобщението не можа да бъде изпратено. Опитайте отново след малко."; return; }
+  m.className = "form-ok"; m.textContent = sent ? "Благодарим! Съобщението е изпратено." : "Благодарим! Съобщението е получено (демо – нищо не е изпратено).";
+  e.target.reset(); });
+
+/* ---------- Изпращане на формите ---------- */
+async function sendForm(endpoint, data){
+  if (!endpoint) return null;                       // демо режим
+  try {
+    const fd = new FormData(); Object.entries(data).forEach(([k,v]) => fd.append(k, v));
+    const r = await fetch(endpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } });
+    return r.ok;
+  } catch(err){ return false; }
+}
+
+/* ---------- Съвети ---------- */
+const TIPS = C.tips || [];
+$("#tipsGrid").innerHTML = TIPS.map((t,i) => `<article class="tip reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[t.icon]||ICONS.home}</svg></div>
+  <span class="tag">${esc(t.tag)} · ${t.minutes} мин</span><h3>${esc(t.title)}</h3><p>${esc(t.text[0])}</p><button class="btn btn-line btn-sm" data-tip="${i}">Прочети</button></article>`).join("");
+if (!TIPS.length) $("#tips").hidden = true;
+function openText(title, eyebrow, paras){
+  openLayer(`<div class="modal text" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="modal-body">${closeBtn}
+    <div class="eyebrow">${esc(eyebrow)}</div><h3>${esc(title)}</h3>${paras.map(t=>`<p>${esc(t)}</p>`).join("")}</div></div>`);
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-tip]"); if (t){ const tp = TIPS[+t.dataset.tip]; return openText(tp.title, "Съвет · " + tp.tag, tp.text); }
+  const l = e.target.closest("[data-legal]"); if (l){ const d = (C.legal||{})[l.dataset.legal]; if (d) openText(d.title, C.brand.name, d.text); }
+});
+
+/* ---------- Партньори и отзиви ---------- */
+const PT = C.partners || [];
+$("#partnersBox").innerHTML = PT.length
+  ? `<div class="partners">${PT.map(x=>`<div class="partner"><b>${esc(x.name)}</b><span>${esc(x.type||"")}${x.city?" · "+esc(x.city):""}</span></div>`).join("")}</div>`
+  : `<div class="partners-empty reveal"><p>${esc(C.partnersEmpty||"")}</p><a class="btn btn-main btn-sm" href="#contact">Стани партньор</a></div>`;
+const RV = C.reviews || [];
+if (RV.length){ $("#reviews").hidden = false;
+  $("#reviewsGrid").innerHTML = RV.map(r=>{ const p = byId(r.product); return `<figure class="review reveal"><blockquote>„${esc(r.text)}“</blockquote><figcaption><b>${esc(r.name)}</b>${p?` · ${esc(p.name)}`:""}</figcaption></figure>`; }).join(""); }
 
 /* ---------- Бот Мики ---------- */
 const B = C.bot; let botOpen = false, history = [], flow = null;
