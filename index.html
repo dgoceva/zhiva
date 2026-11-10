@@ -56,6 +56,7 @@ a{color:inherit}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--green)}
 .lead{color:var(--muted);max-width:60ch;margin-top:12px}
 section{padding-block:clamp(56px,9vw,100px)}
+main [id]{scroll-margin-top:72px}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
 .sec-head > div{min-width:0}
 
@@ -84,6 +85,15 @@ nav.main{display:flex;gap:24px}
 nav.main a{text-decoration:none;font-weight:500;font-size:.93rem;position:relative}
 nav.main a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--mint);transition:right .25s}
 nav.main a:hover::after{right:0}
+.more-menu{position:relative}
+.more-menu > button{background:none;border:0;padding:0;font-weight:500;font-size:.93rem;color:inherit;display:flex;align-items:center;gap:4px}
+.more-menu > button span{font-size:.7em;transition:transform .2s}
+.more-menu > button[aria-expanded="true"] span{transform:rotate(180deg)}
+.more-list{position:absolute;right:-12px;top:calc(100% + 14px);background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:6px;min-width:180px;display:grid;z-index:45}
+.more-list[hidden]{display:none}
+.more-list a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:500;font-size:.93rem}
+.more-list a::after{display:none}
+.more-list a:hover{background:var(--surface-2)}
 .top-actions{display:flex;align-items:center;gap:8px}
 .icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;position:relative;flex:none}
 .icon-btn svg{width:20px;height:20px}
@@ -374,6 +384,8 @@ a.chip{text-decoration:none}
     </a>
     <nav class="main" aria-label="Основно меню">
       <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#contact">Контакти</a>
+      <div class="more-menu"><button type="button" id="moreBtn" aria-expanded="false" aria-controls="moreList">Още <span aria-hidden="true">▾</span></button>
+        <div class="more-list" id="moreList" hidden><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a></div></div>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Количка">
@@ -386,7 +398,7 @@ a.chip{text-decoration:none}
     </div>
   </div>
   <div class="mobile-nav wrap" id="mobileNav" hidden>
-    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#contact">Контакти</a>
+    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a><a href="#contact">Контакти</a>
   </div>
 </header>
 
@@ -714,6 +726,14 @@ function renderCart(done){
   $("#checkout").addEventListener("click", () => { const no = "DM-" + Math.floor(10000+Math.random()*89999); cart = []; promoOn = false; $("#cartCount").textContent = "0"; renderCart(no); });
 }
 $("#cartBtn").addEventListener("click", openCart);
+
+/* ---------- Меню „Още“ ---------- */
+const moreBtn = $("#moreBtn"), moreList = $("#moreList");
+const setMore = open => { moreList.hidden = !open; moreBtn.setAttribute("aria-expanded", open); };
+moreBtn.addEventListener("click", e => { e.stopPropagation(); setMore(moreList.hidden); });
+moreList.addEventListener("click", e => { if (e.target.tagName === "A") setMore(false); });
+document.addEventListener("click", e => { if (!e.target.closest(".more-menu")) setMore(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMore(false); });
 
 /* ---------- Мобилно меню ---------- */
 $("#menuBtn").addEventListener("click", () => { const m = $("#mobileNav"), open = m.hidden; m.hidden = !open; $("#menuBtn").setAttribute("aria-expanded", open); });
