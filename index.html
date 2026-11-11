@@ -822,6 +822,7 @@ $("#smpForm").addEventListener("submit", async e => { e.preventDefault(); const 
   if (!$("#sAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
   const p = byId(f.smp.value);
   const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name, "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() }, "Нова заявка за мостра – " + C.brand.name);
+  if (sent === "activate"){ m.className = "form-err"; m.textContent = "Формата още не е активирана. Отворете писмото от FormSubmit в пощата на фирмата и потвърдете, после опитайте отново."; return; }
   if (sent === false){ m.className = "form-err"; m.textContent = "Заявката не можа да бъде изпратена. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? `Благодарим! Заявката за мостра от „${p.name}“ е изпратена.` : `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо не е изпратено).`;
   f.reset(); f.smp[0].checked = true; });
@@ -847,6 +848,7 @@ $("#cForm").addEventListener("submit", async e => { e.preventDefault(); const m 
   if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име, валиден имейл и съобщение."; return; }
   if (!$("#cAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
   const sent = await sendForm((C.forms||{}).contact, { "Форма": "Съобщение от сайта", "Име": $("#cName").value.trim(), "Имейл": $("#cMail").value.trim(), "Съобщение": $("#cMsg").value.trim() }, "Ново съобщение от сайта – " + C.brand.name);
+  if (sent === "activate"){ m.className = "form-err"; m.textContent = "Формата още не е активирана. Отворете писмото от FormSubmit в пощата на фирмата и потвърдете, после опитайте отново."; return; }
   if (sent === false){ m.className = "form-err"; m.textContent = "Съобщението не можа да бъде изпратено. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? "Благодарим! Съобщението е изпратено." : "Благодарим! Съобщението е получено (демо – нищо не е изпратено).";
   e.target.reset(); });
@@ -859,7 +861,9 @@ async function sendForm(endpoint, data, subject){
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ _subject: subject || ("Съобщение от сайта – " + C.brand.name), _template: "table", _captcha: "false", ...data }) });
     const j = await r.json().catch(() => ({}));
-    return r.ok && String(j.success) !== "false";
+    if (r.ok && String(j.success) !== "false") return true;
+    if (/activat/i.test(String(j.message || ""))) return "activate";
+    return false;
   } catch(err){ return false; }
 }
 
