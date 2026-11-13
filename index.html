@@ -256,6 +256,21 @@ footer{border-top:1px solid var(--line);padding-top:30px;padding-bottom:calc(96p
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .disclaimer{background:var(--surface-2);color:var(--ink);font-size:.82rem;text-align:center;padding-block:10px}
 
+/* мостри и кампании */
+.pick label .use{font-size:.74rem;font-weight:600;color:var(--green)}
+.camps{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.camp{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.camp .when{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--green)}
+.camp.now .when{background:var(--green);color:var(--on-green)}
+.camp p{color:var(--muted);font-size:.92rem;flex:1}
+.dl-title{margin:36px 0 14px;font-size:1.05rem}
+.dls{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.dl{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;text-decoration:none}
+.dl:hover{border-color:var(--green)}
+.dl .pdf{width:42px;height:42px;flex:none;border-radius:12px;background:var(--surface-2);color:var(--green);display:grid;place-items:center;font-size:.7rem;font-weight:800}
+.dl b{display:block;font-size:.92rem}
+.dl span{font-size:.8rem;color:var(--muted)}
+
 /* съвети, партньори, отзиви, правна информация */
 .tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
 .tip{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
@@ -370,6 +385,7 @@ a.chip{text-decoration:none}
   html{scroll-behavior:auto}
 }
 </style>
+<script data-goatcounter="https://zhivanature.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -383,9 +399,9 @@ a.chip{text-decoration:none}
       <span><b id="logoName"></b><small id="logoSub"></small></span>
     </a>
     <nav class="main" aria-label="Основно меню">
-      <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#contact">Контакти</a>
+      <a href="#science" data-m="science">Как действа</a><a href="#places" data-m="places">Къде помага</a><a href="#products" data-m="products">Продукти</a><a href="#samples" data-m="samples">Мостра</a><a href="#tips" data-m="tips">Съвети</a><a href="#contact" data-m="contact">Контакти</a>
       <div class="more-menu"><button type="button" id="moreBtn" aria-expanded="false" aria-controls="moreList">Още <span aria-hidden="true">▾</span></button>
-        <div class="more-list" id="moreList" hidden><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a></div></div>
+        <div class="more-list" id="moreList" hidden><a href="#campaigns" data-m="campaigns">Кампании</a><a href="#faq" data-m="faq">Въпроси</a><a href="#partners" data-m="partners">Партньори</a><a href="#about" data-m="about">За нас</a></div></div>
     </nav>
     <div class="top-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Количка">
@@ -398,7 +414,7 @@ a.chip{text-decoration:none}
     </div>
   </div>
   <div class="mobile-nav wrap" id="mobileNav" hidden>
-    <a href="#products">Продукти</a><a href="#science">Как действа</a><a href="#places">Къде помага</a><a href="#samples">Мостра</a><a href="#tips">Съвети</a><a href="#faq">Въпроси</a><a href="#partners">Партньори</a><a href="#about">За нас</a><a href="#contact">Контакти</a>
+    <a href="#science" data-m="science">Как действа</a><a href="#places" data-m="places">Къде помага</a><a href="#products" data-m="products">Продукти</a><a href="#samples" data-m="samples">Мостра</a><a href="#tips" data-m="tips">Съвети</a><a href="#campaigns" data-m="campaigns">Кампании</a><a href="#faq" data-m="faq">Въпроси</a><a href="#partners" data-m="partners">Партньори</a><a href="#about" data-m="about">За нас</a><a href="#contact" data-m="contact">Контакти</a>
   </div>
 </header>
 
@@ -419,20 +435,10 @@ a.chip{text-decoration:none}
     </div>
   </div>
 
-  <section id="products">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div><div class="eyebrow">Продукти</div><h2>Една система за целия дом</h2><p class="lead">Концентрирани формули без хлор и фосфати. Изберете продукт или вземете комплекта.</p></div>
-        <div class="filters" id="filters" role="group" aria-label="Филтър по категория"></div>
-      </div>
-      <div class="grid" id="grid"></div>
-    </div>
-  </section>
-
   <section id="science" style="background:var(--surface);border-block:1px solid var(--line)">
     <div class="wrap science-in">
       <div class="reveal">
-        <div class="eyebrow">Как действа</div>
+        <div class="eyebrow" data-t="science.label">Как действа</div>
         <h2 id="sciTitle"></h2>
         <p class="lead" id="sciText"></p>
         <ol class="steps" id="sciSteps"></ol>
@@ -452,17 +458,27 @@ a.chip{text-decoration:none}
 
   <section id="places">
     <div class="wrap">
-      <div class="sec-head reveal"><div><div class="eyebrow">Къде помага</div><h2>За всеки ъгъл, в който живеете</h2></div></div>
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="places.label">Къде помага</div><h2 data-t="places.title">За всеки ъгъл, в който живеете</h2></div></div>
       <div class="places" id="placesGrid"></div>
     </div>
   </section>
 
   <div class="facts"><div class="wrap facts-in" id="facts" style="padding-block:clamp(40px,6vw,64px)"></div></div>
 
+  <section id="products">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><div class="eyebrow" data-t="products.label">Продукти</div><h2 data-t="products.title">Една система за целия дом</h2><p class="lead" data-t="products.text">Концентрирани формули без хлор и фосфати. Изберете продукт или вземете комплекта.</p></div>
+        <div class="filters" id="filters" role="group" aria-label="Филтър по категория"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
   <section id="samples">
     <div class="wrap samples-in">
       <div class="reveal">
-        <div class="eyebrow">Мостра</div>
+        <div class="eyebrow" data-t="samples.label">Мостра</div>
         <h2 id="smpTitle"></h2>
         <p class="lead" id="smpText"></p>
       </div>
@@ -489,37 +505,46 @@ a.chip{text-decoration:none}
     </div>
   </section>
 
+  <section id="campaigns" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="campaigns.label">Кампании</div><h2 data-t="campaigns.title">Пробвайте с нас</h2><p class="lead" data-t="campaigns.text">Какво подготвяме до пролетта. Брошурите може да изтеглите и разпечатате.</p></div></div>
+      <div class="camps" id="campsGrid"></div>
+      <h3 class="dl-title">Материали за изтегляне</h3>
+      <div class="dls" id="dlGrid"></div>
+    </div>
+  </section>
+
   <section id="tips" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head reveal"><div><div class="eyebrow">Съвети</div><h2>Полезно за дома</h2><p class="lead">Кратки съвети за чист дом без излишна химия.</p></div></div>
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="tips.label">Съвети</div><h2 data-t="tips.title">Полезно за дома</h2><p class="lead" data-t="tips.text">Кратки съвети за чист дом без излишна химия.</p></div></div>
       <div class="tips" id="tipsGrid"></div>
     </div>
   </section>
 
   <section id="faq" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head reveal"><div><div class="eyebrow">Въпроси</div><h2>Често питат</h2></div></div>
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="faq.label">Въпроси</div><h2 data-t="faq.title">Често питат</h2></div></div>
       <div class="faq" id="faqList"></div>
     </div>
   </section>
 
   <section id="reviews" style="padding-top:0" hidden>
     <div class="wrap">
-      <div class="sec-head reveal"><div><div class="eyebrow">Отзиви</div><h2>Какво казват хората</h2></div></div>
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="reviews.label">Отзиви</div><h2 data-t="reviews.title">Какво казват хората</h2></div></div>
       <div class="reviews" id="reviewsGrid"></div>
     </div>
   </section>
 
   <section id="partners" style="padding-top:0">
     <div class="wrap">
-      <div class="sec-head reveal"><div><div class="eyebrow">Къде да ни намерите</div><h2>Партньори</h2></div></div>
+      <div class="sec-head reveal"><div><div class="eyebrow" data-t="partners.label">Къде да ни намерите</div><h2 data-t="partners.title">Партньори</h2></div></div>
       <div id="partnersBox"></div>
     </div>
   </section>
 
   <section id="about" style="background:var(--surface);border-block:1px solid var(--line)">
     <div class="wrap about-in">
-      <div class="reveal"><div class="eyebrow">За нас</div><h2 id="aboutTitle"></h2><p class="story" id="aboutText"></p></div>
+      <div class="reveal"><div class="eyebrow" data-t="about.label">За нас</div><h2 id="aboutTitle"></h2><p class="story" id="aboutText"></p></div>
       <div class="team reveal" id="team"></div>
     </div>
   </section>
@@ -527,8 +552,8 @@ a.chip{text-decoration:none}
   <section id="contact">
     <div class="wrap contact-in">
       <div class="reveal">
-        <div class="eyebrow">Контакти</div>
-        <h2>Пишете ни</h2>
+        <div class="eyebrow" data-t="contact.label">Контакти</div>
+        <h2 data-t="contact.title">Пишете ни</h2>
         <div class="cinfo" id="cinfo"></div>
         <div class="social" id="social"></div>
       </div>
@@ -556,6 +581,17 @@ a.chip{text-decoration:none}
 <script>
 (function(){
 const C = window.CONTENT;
+// Заглавия на секциите и менюто – от content.js (sections, menu)
+document.querySelectorAll("[data-t]").forEach(el=>{
+  const [sec,key]=el.dataset.t.split(".");
+  const v=(C.sections||{})[sec]?.[key];
+  if(typeof v==="string"&&v.trim()) el.textContent=v;
+});
+document.querySelectorAll("[data-m]").forEach(el=>{
+  const v=(C.menu||{})[el.dataset.m];
+  if(typeof v==="string"&&v.trim()) el.textContent=v;
+});
+
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const money = n => new Intl.NumberFormat("bg-BG",{style:"currency",currency:"EUR"}).format(n);
@@ -815,13 +851,13 @@ if (!reduced) new IntersectionObserver((es, ob) => { if (!es[0].isIntersecting) 
 /* ---------- Мостри ---------- */
 const SM = C.samples;
 $("#smpTitle").textContent = SM.title; $("#smpText").textContent = SM.text;
-$("#smpPick").innerHTML = SM.products.map((id,i)=>{ const p = byId(id); return `<label style="${bgFor(p)}"><input type="radio" name="smp" value="${id}" ${i?"":"checked"}>${art(p)}<span>${esc(p.name)}</span></label>`; }).join("");
+$("#smpPick").innerHTML = SM.products.map((id,i)=>{ const p = byId(id); return `<label style="${bgFor(p)}"><input type="radio" name="smp" value="${id}" ${i?"":"checked"}>${art(p)}<span>${esc(p.name)}</span><small class="use">${esc((SM.uses||{})[id]||"")}</small></label>`; }).join("");
 $("#smpForm").addEventListener("submit", async e => { e.preventDefault(); const f = e.target, m = $("#smpMsg");
   const ok = $("#sName").value.trim() && /\S+@\S+\.\S+/.test($("#sMail").value); m.hidden = false;
   if (!ok){ m.className = "form-err"; m.textContent = "Попълнете име и валиден имейл."; return; }
   if (!$("#sAgree").checked){ m.className = "form-err"; m.textContent = "Моля, потвърдете, че сте съгласни с политиката за поверителност."; return; }
-  const p = byId(f.smp.value);
-  const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name, "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() }, "Нова заявка за мостра – " + C.brand.name);
+  const p = byId(f.smp.value), use = (SM.uses||{})[p.id] || "";
+  const sent = await sendForm((C.forms||{}).samples, { "Форма": "Заявка за мостра", "Продукт": p.name + (use ? " (" + use + ")" : ""), "Име": $("#sName").value.trim(), "Град": $("#sCity").value.trim(), "Имейл": $("#sMail").value.trim() }, "Нова заявка за мостра – " + C.brand.name);
   if (sent === "activate"){ m.className = "form-err"; m.textContent = "Формата още не е активирана. Отворете писмото от FormSubmit в пощата на фирмата и потвърдете, после опитайте отново."; return; }
   if (sent === false){ m.className = "form-err"; m.textContent = "Заявката не можа да бъде изпратена. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? `Благодарим! Заявката за мостра от „${p.name}“ е изпратена.` : `Благодарим! Мостра от „${p.name}“ е заявена (демо – нищо не е изпратено).`;
@@ -852,6 +888,11 @@ $("#cForm").addEventListener("submit", async e => { e.preventDefault(); const m 
   if (sent === false){ m.className = "form-err"; m.textContent = "Съобщението не можа да бъде изпратено. Опитайте отново след малко."; return; }
   m.className = "form-ok"; m.textContent = sent ? "Благодарим! Съобщението е изпратено." : "Благодарим! Съобщението е получено (демо – нищо не е изпратено).";
   e.target.reset(); });
+
+/* ---------- Кампании и материали ---------- */
+$("#campsGrid").innerHTML = (C.campaigns||[]).map((k,i)=>`<article class="camp reveal${i===0?" now":""}"><span class="when">${esc(k.when)}</span><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p>${k.file?`<a class="btn btn-line btn-sm" href="${esc(k.file)}" target="_blank" rel="noopener">Изтегли: ${esc(k.fileLabel||"PDF")}</a>`:""}</article>`).join("");
+$("#dlGrid").innerHTML = (C.downloads||[]).map(d=>`<a class="dl" href="${esc(d.file)}" target="_blank" rel="noopener"><span class="pdf">PDF</span><span><b>${esc(d.title)}</b><span>${esc(d.text)}</span></span></a>`).join("");
+if (!(C.campaigns||[]).length) $("#campaigns").hidden = true;
 
 /* ---------- Изпращане на формите ---------- */
 async function sendForm(endpoint, data, subject){
